@@ -1,4 +1,4 @@
-package com.charles.solutions.leetcode;
+package com.charles.solutions.leetcode.solutions;
 
 import java.util.List;
 import java.util.Map;

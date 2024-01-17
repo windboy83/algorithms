@@ -5,34 +5,45 @@ buildscript {
     }
 }
 
-subprojects {
-    apply plugin: 'java'
-    apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
 
-    sourceCompatibility = 18
+apply plugin: 'java'
 
-    repositories {
-        mavenCentral()
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
     }
+}
 
-    configurations {
-        compileOnly {
-            extendsFrom annotationProcessor
+dependencies {
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main']
         }
-    }
-
-    dependencies {
-
-        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
-        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
     }
 
     test {
-        useJUnitPlatform()
-
-        testLogging {
-            events = ["passed", "failed", "skipped"]
+        java {
+            srcDirs = ['src/test']
         }
+    }
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events = ["passed", "failed", "skipped"]
     }
 }
