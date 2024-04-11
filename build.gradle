@@ -8,7 +8,7 @@ buildscript {
 
 apply plugin: 'java'
 
-sourceCompatibility = 11
+sourceCompatibility = 17
 
 repositories {
     mavenCentral()
@@ -21,6 +21,11 @@ configurations {
 }
 
 dependencies {
+
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor(
+            'org.projectlombok:lombok:1.18.32'
+    )
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
